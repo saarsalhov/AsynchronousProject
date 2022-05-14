@@ -1,17 +1,26 @@
-import logo from './logo.png';
+import logo from './mylogo.png';
 import './App.css';
-import React, {useState} from "react";
+import NavBar from "./Navbar";
+import {Link, Switch, Route} from 'react-router';
+import SignUp from './SignUp';
+import {render} from 'react-dom';
 
 function App() {
-    const [] = useState ([])
-    return (
-        <>
-            <input type="text"/>
-            <button>Add cost</button>
-            <button>Clear cost</button>
-            <div>0 costs in the memory</div>
-        </>
-    );
+    {
+        return (
+            <>
+                <div className="App">
+                    <header className="App-header">
+                        <NavBar/>
+                        <h1>Welcome to FINCONO</h1>
+
+                    </header>
+                </div>
+            </>
+        );
+
+    }
 }
 
 export default App;
+
