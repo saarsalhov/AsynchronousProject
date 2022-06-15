@@ -1,7 +1,7 @@
 const express = require("express"),
   app = express(),
   cors = require("cors");
-
+  require("dotenv").config()
 // make server object that contain port property and the value for our server.
 const server = {
   port: 4040,

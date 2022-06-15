@@ -18,8 +18,10 @@
   "homepage": "https://github.com/saarsalhov/AsynchronousProject#readme",
   "dependencies": {
     "cors": "^2.8.5",
+    "dotenv": "^16.0.1",
     "express": "^4.18.1",
     "express-formidable": "^1.2.0",
-    "mongodb": "^4.7.0"
+    "mongodb": "^4.7.0",
+    "nodemon": "^2.0.16"
   }
 }
