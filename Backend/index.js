@@ -9,7 +9,7 @@ const server = {
 
 // routers
 const usersRouter = require("./routes/users");
-// const costsRouter = require("./routes/costs");
+const costsRouter = require("./routes/costs");
 
 // use the modules
 app.use(cors());
@@ -17,7 +17,7 @@ app.use(express.json());
 
 
 app.use("/users", usersRouter);
-// app.use("/costs", costsRouter);
+app.use("/costs", costsRouter);
 
 // starting the server
 app.listen(server.port, () =>
