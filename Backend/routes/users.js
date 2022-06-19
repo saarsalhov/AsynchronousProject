@@ -4,10 +4,10 @@ const dbo = require("../db/conn")
 
 
 
-// Hello World health check
+// Hello users health check
 router.get("/", async function (req, res) {
-    console.log("hello world");
-    res.send(JSON.stringify("hello world"));
+    console.log("hello users");
+    res.send(JSON.stringify("hello users"));
     return true;
 });
 
@@ -46,22 +46,6 @@ router.post("/signup", async function (req, res) {
     });
     dbConnect.close();
 });
-
-
-
-router.get("/listings", async function (req, res) {
-    const dbConnect = await dbo.connectToServer();
-    dbConnect
-      .collection("users")
-      .find({}).limit(50)
-      .toArray(function (err, result) {
-        if (err) {
-          res.status(400).send("Error fetching listings!");
-       } else {
-          res.json(result);
-        }
-      });
-  });
 
 
 
