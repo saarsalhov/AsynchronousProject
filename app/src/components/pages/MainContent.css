@@ -1,0 +1,19 @@
+content {
+    align-items: center;
+    text-align: center;
+}
+
+.content > h1 {
+    text-align: center;
+}
+
+.content > p {
+    text-align: center;
+}
+
+.main-content-logo {
+    display: block;
+    margin-left: auto;
+    margin-right: auto;
+    width: 100px;
+}

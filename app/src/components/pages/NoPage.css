@@ -1,0 +1,19 @@
+wrapper {
+  align-items: center;
+  text-align: center;
+}
+
+.wrapper > h1 {
+  text-align: center;
+}
+
+.wrapper > p {
+  text-align: center;
+}
+
+.error-logo {
+  display: block;
+  margin-left: auto;
+  margin-right: auto;
+  width: 300px;
+}
