@@ -3,7 +3,7 @@ import "./ChangePass.css";
 
 async function ChangePassAPI(credentials) {
   console.log("before api signip")
-  return fetch("http://localhost:8000/changePassword", {
+  return fetch("http://localhost:4040/changePassword", {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -60,7 +60,7 @@ export default function LogIn() {
     //Prevent page reload
     event.preventDefault();
     var cred = {
-      bUsername: localStorage.getItem("username"),
+      bUsername: localStorage.getItem("email"),
       bOldPass:oldPassword,
       bNewPass:newPassword,
     }

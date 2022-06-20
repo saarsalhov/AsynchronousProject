@@ -1,9 +1,9 @@
 import React, {useState} from 'react'
-import "./UploadReceipt.css"
+import "./AddCost.css"
 
 async function uploadReceiptAPI(receipt) {
     console.log("before api signip")
-    return fetch("http://localhost:8000/uploadReceipt", {
+    return fetch("http://localhost:4040/uploadReceipt", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
@@ -18,7 +18,7 @@ async function uploadReceiptAPI(receipt) {
     });
   }
 
-export default function UploadReceipt() {
+export default function AddCost() {
 
 const [inputList, setInputList] = useState([{ name: "", color: "", price: "" }]);
 const [text, setText] = useState();
@@ -41,7 +41,7 @@ const handleSubmit = async (event) => {
     event.preventDefault();
     var receipt = {
         date : purchaseDate,
-        username: localStorage.getItem("username"),
+        username: localStorage.getItem("email"),
         storeName: storeName,
         products:inputList,
     }

@@ -7,7 +7,7 @@ export default function Receipts() {
   const [data, setData] = useState('');
 
   const fetchData = useCallback(async () => {
-    const data = await fetch(`http://localhost:8000/getAllmyReceipts?username=${localStorage.getItem("username")}`);
+    const data = await fetch(`http://localhost:8000/getAllmyReceipts?email=${localStorage.getItem("email")}`);
     const json = await data.json();
 
     setData(json.message);

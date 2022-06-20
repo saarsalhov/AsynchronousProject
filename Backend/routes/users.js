@@ -59,16 +59,19 @@ router.post("/signin", async function (req, res) {
     dbConnect.db("async_course_db").collection("users")
         .find({"email_address": req.body.email_address, "password": req.body.password}).limit(1)
         .toArray(function (err, result) {
-            console.log('hi',result[0].first_name);
             if (err) {
                 res.status(500).send("Error fetching listings!");
             } else if (!(result && result.length)) {
                 res.status(404).send("user not exist");
             } else {
-                const token = jwt.sign({username: req.body.email_address, name: result[0].first_name}, 'verySecretValue', {expiresIn: '1h'})
+                console.log('hi',result[0].first_name);
+                const token = jwt.sign({username: req.body.email_address, name: result[0].first_name},
+                    'verySecretValue', {expiresIn: '1h'})
+                console.log('token:', token)
                 res.status(200).json({
                     message: 'Login successful!',
-                    token
+                    token,
+                    first_name: result[0].first_name
                 })
             }
         });

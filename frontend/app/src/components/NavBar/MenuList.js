@@ -7,12 +7,16 @@ const MenuList = () => {
 
   const onLogout = async (event) => {
     
-    localStorage.removeItem("username");
-    
+    localStorage.removeItem("email");
+    localStorage.removeItem("name");
+    localStorage.removeItem("token");
+
     window.location.reload();
   };
 
-  const username = localStorage.getItem("username");
+  const username = localStorage.getItem("email");
+  const firstName = localStorage.getItem("name");
+
   return (
     !username? (
       <>
@@ -43,7 +47,7 @@ const MenuList = () => {
       <Link to="/"><img src={homeLogo} className='nav-logo' alt="" /></Link>
         <ul className="nav-items">
         <li className="user">
-              Hello {username}
+              Hello {firstName}
           </li>
           <li onClick={onLogout} className="logout">
             <Link to="/">Log-Out</Link>
@@ -55,7 +59,7 @@ const MenuList = () => {
             <Link to="/Receipts">Receipts</Link>
           </li>
           <li>
-            <Link to="/UploadReceipt">Upload Receipt</Link>
+            <Link to="/AddCost">Upload Receipt</Link>
           </li>
           <li>
             <Link to="/ChangePass">Change Password</Link>

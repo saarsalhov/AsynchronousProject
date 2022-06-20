@@ -5,14 +5,14 @@ import Home from '../pages/Home'
 import Receipts from '../pages/Receipts'
 import SignUp from '../pages/SignUp'
 import LogIn from '../pages/LogIn'
-import UploadReceipt from '../pages/UploadReceipt'
+import AddCost from '../pages/AddCost'
 import NoPage from '../pages/NoPage';
 import ContactUs from '../pages/ContactUs';
 import ChangePass from '../pages/ChangePass'
 
 
 export default function NavBar() {
-  const username = localStorage.getItem("username");
+  const username = localStorage.getItem("email");
 
   const notLoggedIn = (
     <BrowserRouter>
@@ -34,9 +34,10 @@ export default function NavBar() {
       <Route path="/" element={<MenuList />}>
         <Route index element={<Home />} />
         <Route path="ChangePass" element={<ChangePass />} />
-        <Route path="UploadReceipt" element={<UploadReceipt />} />
+        {/*<Route path="AddCost" element={<AddCost />} />*/}
+        <Route path="AddCost" element={<AddCost />} />
         <Route path="ContactUs" element={<ContactUs />} />
-        <Route path="Receipts" element={<Receipts />} />
+        {/*<Route path="Receipts" element={<Receipts />} />*/}
         <Route path="logIn" element={<Home />} />
         </Route>
         <Route path="*" element={<NoPage />} />
