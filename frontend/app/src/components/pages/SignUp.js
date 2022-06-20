@@ -90,17 +90,6 @@ export default function SignUp() {
     setEmail(event.target.value);
   };
 
-  // handele the change password input
-  const handleChangePassword = async (event) => {
-    event.preventDefault();
-    if (event.target.value.length < 5)
-      setErrorPassword("Password must be at least 5 characters long!");
-    else {
-      setErrorPassword("");
-   }
-    setPassword(event.target.value);
-  };
-
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -193,7 +182,7 @@ const renderForm = (
         <input type="password"
         placeholder="··········"
         value={password}
-        onChange={handleChangePassword}
+        // onChange={handleChangePassword}
         required
          />
         {errorPassword && (

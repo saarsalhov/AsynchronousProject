@@ -62,9 +62,6 @@ const MenuList = () => {
             <Link to="/AddCost">Add cost</Link>
           </li>
           <li>
-            <Link to="/ChangePass">Change Password</Link>
-          </li>
-          <li>
             <Link to="/">Home</Link>
           </li>
         </ul>

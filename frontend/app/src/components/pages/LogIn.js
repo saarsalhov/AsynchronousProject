@@ -89,7 +89,7 @@ export default function LogIn() {
                     <input type="password"
                            placeholder="··········"
                            value={password}
-                           onChange={handleChangePassword}
+                           // onChange={handleChangePassword}
                            required/>
                 </div>
                 <div className="button-container">

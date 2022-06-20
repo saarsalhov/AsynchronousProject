@@ -2,14 +2,19 @@
     box-sizing: border-box;
 }
 
-.receipts {
+.costs {
     display: flex;
     justify-content: center;
     flex-wrap: wrap;
     gap: 40px;
 }
+.centered {
+    text-align: center;
+
+}
 
 .receipt-card {
+
     flex-basis: 225px;
     box-shadow: 1px 1px 8px rgba(0, 0, 0, 0.25);
     border-radius: 10px;

@@ -8,7 +8,6 @@ import LogIn from '../pages/LogIn'
 import AddCost from '../pages/AddCost'
 import NoPage from '../pages/NoPage';
 import ContactUs from '../pages/ContactUs';
-import ChangePass from '../pages/ChangePass'
 
 
 export default function NavBar() {
