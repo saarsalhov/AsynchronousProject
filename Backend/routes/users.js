@@ -1,8 +1,7 @@
-const express = require("express"),
+const express   = require("express"),
     router = express.Router();
-const dbo = require("../db/conn")
-
-
+const dbo       = require("../db/conn")
+const  jwt      = require('jsonwebtoken')
 
 // Hello users health check
 router.get("/", async function (req, res) {
@@ -25,28 +24,56 @@ router.post("/signup", async function (req, res) {
     };
 
     dbConnect
-    .db("async_course_db")
-    .collection("users")
-    .find({"email_address": req.body.email_address}).limit(1)
-    .toArray(function (err, result) {
-        console.log(result);
-      if (err) {
-        res.status(400).send("Error fetching listings!");
-     } else if (result && result.length) {
-        res.status(401).send("user already exist");
-      } else {
-        dbConnect.db("async_course_db").collection("users").insertOne(newUser, function (err, res) {
-            if (err){ throw err;}
-            else {
-                console.log("user created successfully");
+        .db("async_course_db")
+        .collection("users")
+        .find({"email_address": req.body.email_address}).limit(1)
+        .toArray(function (err, result) {
+            console.log(result);
+            if (err) {
+                res.status(500).send("Error fetching listings!");
+            } else if (result && result.length) {
+                res.status(400).send("user already exist");
+            } else {
+                dbConnect.db("async_course_db").collection("users").insertOne(newUser, function (err, res) {
+                    if (err) {
+                        throw err;
+                    } else {
+                        console.log("user created successfully");
+                    }
+                });
+                res.status(201).send(JSON.stringify({status: "user created successfully!"}));
             }
         });
-        res.status(200).send(JSON.stringify({ status: "user created successfully!" }));
-      }
-    });
     dbConnect.close();
 });
 
+
+// sign in
+router.post("/signin", async function (req, res) {
+    const dbConnect = await dbo.connectToServer();
+    var user = {
+        email_address: req.body.email_address,
+        password: req.body.password
+    };
+
+    dbConnect.db("async_course_db").collection("users")
+        .find({"email_address": req.body.email_address, "password": req.body.password}).limit(1)
+        .toArray(function (err, result) {
+            console.log('hi',result[0].first_name);
+            if (err) {
+                res.status(500).send("Error fetching listings!");
+            } else if (!(result && result.length)) {
+                res.status(404).send("user not exist");
+            } else {
+                const token = jwt.sign({username: req.body.email_address, name: result[0].first_name}, 'verySecretValue', {expiresIn: '1h'})
+                res.status(200).json({
+                    message: 'Login successful!',
+                    token
+                })
+            }
+        });
+    dbConnect.close();
+});
 
 
 module.exports = router;
