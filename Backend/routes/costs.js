@@ -138,15 +138,14 @@ router.post("/addCostItem", async function (req, res) {
 });
 
 
-
-
+// filter costs by month ,year and email address
 router.get("/reportByMonthAndYear", async function (req, res) {
   let usersMonth = parseInt(req.query.month);
   let usersYear = parseInt(req.query.year);
   let emailAddress = req.query.email;
   const dbConnect = await dbo.connectToServer();
 
-  let myQuery = { $expr: { $and: [{ "$eq": [{ "$month": "$date" }, usersMonth ]},{ "$eq": [{ "$year": "$date" }, usersYear ]}]}, email_address: emailAddress };
+  let myQuery = { $expr: { $and: [{ "$eq": [{ "$month": "$date" }, usersMonth] }, { "$eq": [{ "$year": "$date" }, usersYear] }] }, email_address: emailAddress };
 
   dbConnect
     .db("async_course_db")
@@ -156,12 +155,36 @@ router.get("/reportByMonthAndYear", async function (req, res) {
       if (err) {
         res.status(500).send("Error to find all cost item!");
       } else {
-        res.status(200).send(JSON.stringify({data: result[0]}));
+        res.status(200).send(JSON.stringify({ data: result[0] }));
       }
     });
 
   dbConnect.close();
 });
+
+
+// filter costs by email address
+router.get("/allMyCosts", async function (req, res) {
+  let emailAddress = req.query.email;
+  const dbConnect = await dbo.connectToServer();
+
+  let myQuery = { email_address: emailAddress };
+
+  dbConnect
+    .db("async_course_db")
+    .collection("costs")
+    .find(myQuery, { projection: { _id: 0 } })
+    .toArray(function (err, result) {
+      if (err) {
+        res.status(500).send("Error to find all cost item!");
+      } else {
+        res.status(200).send(JSON.stringify({ data: result[0] }));
+      }
+    });
+
+  dbConnect.close();
+});
+
 
 
 
