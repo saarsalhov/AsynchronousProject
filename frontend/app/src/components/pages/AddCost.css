@@ -1,4 +1,4 @@
-.upload-receipt {
+.add-cost {
     font-family: sans-serif;
     display: flex;
     align-items: center;
@@ -15,12 +15,25 @@
     height: 25px;
     border: 1px solid rgba(0, 0, 0, 0.2);
   }
-  .store-name{
+  .description{
     display: flex;
     align-items: center;
     justify-content: center;
     gap: 20px;
     padding: 10px 20px;
+  }
+
+  .centered {
+    text-align: center;
+
+  }
+  .button {
+    border-radius: 20px;
+  }
+
+  select {
+    text-align: center;
+
   }
 
   .purchase-date{
@@ -50,7 +63,7 @@
     justify-content: center;
   }
   
-  .upload-receipt-form {
+  .add-cost-form {
     background-color: rgb(89, 81, 81);
     padding: 2rem;
     box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);

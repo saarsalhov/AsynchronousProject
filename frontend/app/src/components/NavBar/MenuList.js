@@ -56,10 +56,10 @@ const MenuList = () => {
             <Link to="/ContactUs">Conatct us</Link>
           </li>
           <li>
-            <Link to="/Receipts">Receipts</Link>
+            <Link to="/Costs">Costs</Link>
           </li>
           <li>
-            <Link to="/AddCost">Upload Receipt</Link>
+            <Link to="/AddCost">Add cost</Link>
           </li>
           <li>
             <Link to="/ChangePass">Change Password</Link>

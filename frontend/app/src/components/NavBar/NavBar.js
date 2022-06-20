@@ -2,7 +2,7 @@ import React from 'react'
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import MenuList from './MenuList';
 import Home from '../pages/Home'
-import Receipts from '../pages/Receipts'
+import Costs from '../pages/Costs'
 import SignUp from '../pages/SignUp'
 import LogIn from '../pages/LogIn'
 import AddCost from '../pages/AddCost'
@@ -33,11 +33,9 @@ export default function NavBar() {
     <Routes>
       <Route path="/" element={<MenuList />}>
         <Route index element={<Home />} />
-        <Route path="ChangePass" element={<ChangePass />} />
-        {/*<Route path="AddCost" element={<AddCost />} />*/}
         <Route path="AddCost" element={<AddCost />} />
         <Route path="ContactUs" element={<ContactUs />} />
-        {/*<Route path="Receipts" element={<Receipts />} />*/}
+        <Route path="Costs" element={<Costs />} />
         <Route path="logIn" element={<Home />} />
         </Route>
         <Route path="*" element={<NoPage />} />
