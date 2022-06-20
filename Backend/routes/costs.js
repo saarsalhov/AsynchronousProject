@@ -178,7 +178,7 @@ router.get("/allMyCosts", async function (req, res) {
       if (err) {
         res.status(500).send("Error to find all cost item!");
       } else {
-        res.status(200).send(JSON.stringify({ data: result[0] }));
+        res.status(200).send(JSON.stringify({ data: result }));
       }
     });
 
