@@ -7,10 +7,14 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 40px;
+    padding-top: 5%;
 }
 .centered {
     text-align: center;
 
+}
+.button-container{
+    margin-top: -1%;
 }
 
 .receipt-card {
