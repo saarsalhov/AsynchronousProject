@@ -74,7 +74,7 @@ export default function Costs() {
             <div className="costs">
 
                 <div className="button-container">
-                    <input className="button" type="submit" value="סנן" onClick={handleSubmit}/>
+                    <input className="button" type="submit" value="filter" onClick={handleSubmit}/>
                 </div>
                 <div className="select-month centered">
                     <select onChange={onMonthChange} value={selectedMonth}

@@ -40,16 +40,13 @@ const MenuList = () => {
                         <Link to="/"><img src={homeLogo} className='nav-logo' alt=""/></Link>
                         <ul className="nav-items">
                             <li>
-                                <p>$</p>
-                            </li>
-                            <li>
                                 <Link to="/ContactUs">Conatct us</Link>
                             </li>
                             <li>
-                                <Link to="/SignUp">Register</Link>
+                                <Link to="/SignUp">Sign up</Link>
                             </li>
                             <li>
-                                <Link to="/LogIn">Sign-in</Link>
+                                <Link to="/LogIn">Sign in</Link>
                             </li>
                             <li>
                                 <Link to="/">Home</Link>

@@ -20,13 +20,13 @@
     cursor: pointer;
     font-size: 15px;
     background: #ca3c2a;
-    border: 1px solid #cf230c;
+    border: 1px solid rgba(163, 200, 254, 0.82);
     color: #fff;
     padding: 10px 20px;
   }
   
   input[type="submit"]:hover {
-    background: #c66a5e;
+    background: rgba(67, 109, 200, 0.73);
   }
   
   .button-container {
@@ -63,3 +63,16 @@
     gap: 8px;
     margin: 10px;
   }
+
+  p{
+    color: #ffa2a2;
+  }
+
+button {
+  border-radius: 20px;
+  cursor:pointer;
+}
+
+select{
+  cursor:pointer;
+}

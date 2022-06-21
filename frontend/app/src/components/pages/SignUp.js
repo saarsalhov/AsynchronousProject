@@ -9,7 +9,7 @@ const validEmailRegex = RegExp(
 
 async function createUserAPI(credentials) {
   console.log("before api signup")
-  return fetch("http://localhost:4040/register", {
+  return fetch("http://localhost:4040/users/signup", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -88,6 +88,17 @@ export default function SignUp() {
       setErrorEmail("");
     }
     setEmail(event.target.value);
+  };
+
+  // handele the change password input
+  const handleChangePassword = async (event) => {
+    event.preventDefault();
+    if (event.target.value.length < 5)
+      setErrorPassword("Password must be at least 5 characters long!");
+    else {
+      setErrorPassword("");
+   }
+    setPassword(event.target.value);
   };
 
 
@@ -182,7 +193,7 @@ const renderForm = (
         <input type="password"
         placeholder="··········"
         value={password}
-        // onChange={handleChangePassword}
+        onChange={handleChangePassword}
         required
          />
         {errorPassword && (
