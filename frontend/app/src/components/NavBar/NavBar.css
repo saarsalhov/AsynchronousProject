@@ -73,4 +73,10 @@ nav {
     background-color: #c66a5e;
 }
 
+ul, li {
+    list-style-type: none;
+}
 
+button{
+    margin: -24%;
+}

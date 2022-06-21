@@ -8,8 +8,11 @@ export default function Costs() {
     const maxOffset = 10;
     const thisYear = (new Date()).getFullYear();
 
+
     const [data, setData] = useState('');
-    const [selectedDate, setSelectedDate] = useState('');
+    const [selectedYear, setSelectedYear] = useState('');
+    const [selectedMonth, setSelectedMonth] = useState('');
+    const [textMessage, setTextMessage] = useState(' ');
 
     const fetchData = useCallback(async () => {
         const data = await fetch(`http://localhost:4040/costs/allMyCosts?email=${localStorage.getItem("email")}`);
@@ -17,39 +20,37 @@ export default function Costs() {
 
         setData(json.data);
     }, [])
-    const fetchDataFiltered = useCallback(async () => {
-        const data = await fetch(`http://localhost:4040/costs/allMyCosts?email=${localStorage.getItem("email")}`);
-        const json = await data.json();
 
-        setData(json.data);
+    const fetchDataFiltered = useCallback(async (filter) => {
+        const data = await fetch(`http://localhost:4040/costs/reportByMonthAndYear?month=${filter.month}&year=${filter.year}&email=${filter.email}`);
+        const json = await data.json();
+        console.log('json.data',json.data);
+
+        if (!json.data.length){
+            setTextMessage('NO DATA')
+        } else {
+            setTextMessage(' ')
+        }
+        setData(json.data)
+        return json.data;
     }, [])
 
-    const onHandleChange = (evt) => {
-        setSelectedDate(evt.target.value)
+    const onYearChange = (evt) => {
+        setSelectedYear(evt.target.value)
+    };
+
+    const onMonthChange = (evt) => {
+        setSelectedMonth(evt.target.value)
     };
 
     const handleSubmit = async (event) => {
-
-        // change submit FILTER ***********
-
-        // event.preventDefault();
-        // var cost = {
-        //     date: purchaseDate,
-        //     email_address: localStorage.getItem("email"),
-        //     description: description,
-        //     category: category,
-        //     price: purchaseSum,
-        //     coin: coin,
-        // }
-        // const response = await addCostAPI(cost);
-        // if (response) {
-        //     setText("Cost added")
-        //     setPurchaseDate("");
-        //     setDescription("");
-        //     setCategory("")
-        //     setCoin("")
-        //     setPurchaseSum("")
-        // }
+        event.preventDefault();
+        var filters = {
+            year: selectedYear,
+            month: selectedMonth,
+            email: localStorage.getItem("email"),
+        }
+        await fetchDataFiltered(filters);
     }
 
     // the useEffect is only there to call `fetchData` at the right time
@@ -76,8 +77,7 @@ export default function Costs() {
                     <input className="button" type="submit" value="סנן" onClick={handleSubmit}/>
                 </div>
                 <div className="select-month centered">
-                    <select
-                        // onChange={handleChangeCategory} value={category}
+                    <select onChange={onMonthChange} value={selectedMonth}
                         name="month" id="month" required>
                         <option value="">Choose month</option>
                         <option value="1">January</option>
@@ -97,7 +97,7 @@ export default function Costs() {
 
                 <div className="select-year centered">
                     <select
-                        onChange={onHandleChange} value={selectedDate}
+                        onChange={onYearChange} value={selectedYear}
                         name="year" id="year" required>
                         <option value="">Choose year</option>
                         {options}
@@ -108,13 +108,14 @@ export default function Costs() {
             </div>
 
             <div className="costs">
+                <b>{textMessage}</b>
                 {data ? data.map((cost) =>
                         <Cost
                             date={(new Date(cost.date).toDateString())}
                             category={cost.category}
                             description={cost.description}
-                            price={cost.sum[0].price}
-                            coin={cost.sum[0].coin}
+                            price={cost.sum.filter(function (el){return el.coin===localStorage.getItem("coin")})[0].price}
+                            coin={localStorage.getItem("coin")}
                         />)
                     : null
                 }
