@@ -17,25 +17,15 @@ async function createUserAPI(credentials) {
     },
     body: JSON.stringify(credentials),
   }).then((res) => {
-    if (res.ok) {
+    if (res.status === 201) {
       console.log("signup succeeded")
       return "success";
     }
     else {
-      // if (res.status===401)
-      //   {
-      //     return "Password is too weak or too short";
-      //   }
-      //   else if (res.status===402)
-      //   {
-      //     return "Email is not valid";
-      //   }
-      //   else if(res.status===403)
-      //   {
-      //     return "The username already exists";
-      //   }
-      if (res.status===404)
-      {
+      if (res.status === 500) {
+        return "Error ocured in the server";
+      }
+      else if (res.status === 400) {
         return "The username allready exist";
       }
     }
@@ -49,6 +39,8 @@ export default function SignUp() {
   const [firstName, setFirstName] = useState();
   const [lastName, setLastName] = useState();
   const [gender, setGender] = useState();
+  const [maritalStatus, setMaritalStatus] = useState();
+  const [birthday, setBirthday] = useState();
 
 
   // Errors
@@ -68,7 +60,15 @@ export default function SignUp() {
     setLastName(event.target.value);
   };
 
-  const handleChangeGender = async (event) => {
+  const handleChangeBirthday = async (event) => {
+    event.preventDefault();
+    setBirthday(event.target.value);
+  };
+    const handleChangeMaritalStatus = async (event) => {
+    event.preventDefault();
+    setMaritalStatus(event.target.value);
+  };
+    const handleChangeGender = async (event) => {
     event.preventDefault();
     setGender(event.target.value);
   };
@@ -102,11 +102,13 @@ export default function SignUp() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     var cred = {
-      firstName: firstName.toLowerCase(),
-      lastName: lastName.toLowerCase(),
-      email: userEmail.toLowerCase(),
+      first_name: firstName.toLowerCase(),
+      last_name: lastName.toLowerCase(),
+      email_address: userEmail.toLowerCase(),
       password:password,
       gender: gender,
+      birthday: birthday,
+      marital_status: maritalStatus,
 
     }
     if ( errorEmail || errorPassword) {
@@ -120,20 +122,18 @@ export default function SignUp() {
         setPassword("");
         setFirstName("");
         setLastName("");
+        setBirthday("");
+        setMaritalStatus("");
+        setGender("");
         // setUserName("");
         setErrorEmail("");
         setErrorPassword("");
         setIsSubmitted(true);
-      } else if (val==="Password is too weak or too short"){
-        setText("Password is too weak or too short");
-      }else if (val==="Email is not valid"){
-        setText("The Email" + JSON.stringify(userEmail) + " is not valid");
-        setIsSubmitted(false);
+      } else if (val==="Error ocured in the server"){
+        setText("Error ocured in the server");
       }else if (val==="user already exist"){
         setText("The email " + JSON.stringify(userEmail) + " is already exists");
         setIsSubmitted(false);
-      }else if (val==="The password is very common, change it"){
-        setText("The password is very common, change it");
       }
     }
 
@@ -171,7 +171,7 @@ export default function SignUp() {
                    onChange={handleChangeEmail}/>
             {errorEmail && <Form.Text className="error" >{errorEmail}</Form.Text>}
           </div>
-          <div className="centered">
+          <div className="input-container">
             <label>Gender</label>
             <select
                 value={gender}
@@ -181,7 +181,26 @@ export default function SignUp() {
               <option value="female">Female</option>
               <option value="male">Male</option>
             </select>
-
+          </div>
+          <div className="input-container">
+            <label>Marital status</label>
+            <select
+                value={maritalStatus}
+                onChange={handleChangeMaritalStatus}
+                required >
+              <option value="">Choose marital status</option>
+              <option value="Single">Single</option>
+              <option value="Married">Married</option>
+              <option value="Widowed">Widowed</option>
+              <option value="Divorced">Divorced</option>
+            </select>
+          </div>
+          <div className="input-container">
+            <label>birthday</label>
+            <input type="date"
+                value={birthday}
+                onChange={handleChangeBirthday}
+                required />
           </div>
           <div className="input-container">
             <label>Password </label>

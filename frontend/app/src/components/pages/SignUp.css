@@ -10,7 +10,9 @@
   }
   
   input[type="text"],
+  input[type="date"],
   input[type="password"] {
+    margin-left: auto;
     height: 25px;
     border: 1px solid rgba(0, 0, 0, 0.2);
   }
@@ -74,5 +76,8 @@ button {
 }
 
 select{
+  margin-left: auto;
+  text-align: center;
   cursor:pointer;
 }
+

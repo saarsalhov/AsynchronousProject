@@ -17,16 +17,6 @@ const MenuList = () => {
     const username = localStorage.getItem("email");
     const firstName = localStorage.getItem("name");
 
-    // const setCoin = async (event) => {
-    //     let coin = document.getElementsByClassName("coin")
-    //     console.log(coin);
-    //     console.log(event.target.elements)
-    //     console.log(event.target=="<button>$</button>");
-    //     // if (coin.item())
-    //     localStorage.removeItem("coin")
-    //     localStorage.setItem("coin", coin)
-    // };
-
     function setCoin(coin) {
         localStorage.removeItem("coin")
         localStorage.setItem("coin", coin)

@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import "./LogIn.css";
 
 async function loginUserAPI(credentials) {
@@ -27,6 +27,12 @@ export default function LogIn() {
 
     const [userName, setUserName] = useState();
     const [password, setPassword] = useState();
+
+    useEffect(() => {
+        localStorage.setItem("coin", "usd" );
+            // make sure to catch any error
+        ;
+    }, [])
 
     const handleChangeUserName = async (event) => {
         event.preventDefault();
