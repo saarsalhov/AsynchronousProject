@@ -6,13 +6,13 @@ const dbo = require("../db/conn")
 
 // Hello Costs health check
 router.get("/", async function (req, res) {
-  console.log("hello costs");
+  console.log('hello costs');
   res.send(JSON.stringify("hello costs"));
   return true;
 });
 
 // Add new cost item
-router.post("/addCostItem", async function (req, res) {
+router.post('/addCostItem', async function (req, res) {
   const usd = 3.46;
   const eur = 3.63;
   const gbp = 4.23;

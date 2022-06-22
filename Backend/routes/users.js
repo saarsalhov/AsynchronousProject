@@ -38,7 +38,7 @@ router.post("/signup", async function (req, res) {
                     if (err) {
                         throw err;
                     } else {
-                        console.log("user created successfully");
+                        console.log('user created successfully');
                     }
                 });
                 res.status(201).send(JSON.stringify({status: "user created successfully!"}));
