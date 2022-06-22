@@ -109,14 +109,12 @@ router.post("/addCostItem", async function (req, res) {
           .collection("costs_by_month")
           .find(myQuery, { projection: { _id: 0 } }).limit(1)
           .toArray(function (err, result) {
-            console.log(result[0]);
             if (err) {
               res.status(500).send("Error fetching addCostItem!");
             } else if (result && result.length) {
               for (let i = 0; i < newCostItem.sum.length; i++) {
                 result[0].total_sum[i].price = parseFloat(result[0].total_sum[i].price) + parseFloat(newCostItem.sum[i].price);
               }
-              console.log(result[0]);
               newValues = { $set: result[0] };
               dbConnect.db("async_course_db").collection("costs_by_month").updateOne(myQuery, newValues, function (err, res) {
                 if (err) throw err;
@@ -152,7 +150,7 @@ router.get("/reportByMonthAndYear", async function (req, res) {
     .db("async_course_db")
     .collection("costs")
     .find(allCostsByMonthAndYear, { projection: { _id: 0 } })
-    .toArray(function (err, result) {
+    .toArray(function (err, firstResult) {
       if (err) {
         res.status(500).send("Error to find all cost item!");
       } else {
@@ -160,13 +158,12 @@ router.get("/reportByMonthAndYear", async function (req, res) {
         .db("async_course_db")
         .collection("costs_by_month")
         .find(sumOfCostsByMonthAndYear, { projection: { _id: 0 } })
-        .toArray(function (err, result) {
+        .toArray(function (err, secondResult) {
           if (err) {
-            res.status(500).send("Error to find all cost item!");
+            res.status(500).send("Error to find totla sum of all cost items in this month and year!");
           } else {
-            res.status(200).send(JSON.stringify({ data: result }));
+            res.status(200).send(JSON.stringify({message : [{ data: firstResult },{totalSum: secondResult}]}));
           }});
-        res.status(200).send(JSON.stringify({ data: result }));
       }
     });
 
