@@ -162,7 +162,7 @@ router.get("/reportByMonthAndYear", async function (req, res) {
           if (err) {
             res.status(500).send("Error to find totla sum of all cost items in this month and year!");
           } else {
-            res.status(200).send(JSON.stringify({message : [{ data: firstResult },{totalSum: secondResult}]}));
+            res.status(200).send(JSON.stringify({message : { data: firstResult ,totalSum: secondResult}}));
           }});
       }
     });
