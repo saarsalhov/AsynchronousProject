@@ -6,9 +6,9 @@ export default function MainContent() {
   return (
     <div className="content">
       <h1>Welcome to FINCONO</h1>
-        <p>
+        <h1>
           This is the place you can see all your costs!
-        </p>
+        </h1>
         <img src={logo} className='main-content-logo' alt=''></img>
     </div>
   )

@@ -60,7 +60,7 @@ export default function LogIn() {
                 setText("Successful logged in")
                 localStorage.setItem("email", userName);
                 localStorage.setItem("name", token.first_name)
-                // window.location.reload();
+                window.location.reload();
             } else {
                 setText("You entered wrong credentials");
                 setUserName("");
@@ -75,9 +75,9 @@ export default function LogIn() {
     const renderForm = (
         <div className="form">
             <form onSubmit={handleSubmit}>
-                {text}
+                <p>{text}</p>
                 <div className="input-container">
-                    <label>Username </label>
+                    <label>Email </label>
                     <input type="text"
                            placeholder="Enter username"
                            value={userName}
@@ -101,8 +101,8 @@ export default function LogIn() {
 
     return (
         <div className="LogIn">
+            <h1>Sign In</h1>
             <div className="login-form">
-                <div className="title">Sign In</div>
                 {renderForm}
             </div>
         </div>

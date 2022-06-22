@@ -28,6 +28,7 @@
   }
   .button {
     border-radius: 20px;
+    cursor:pointer;
   }
 
   select {
@@ -47,14 +48,14 @@
     margin-top: 10px;
     cursor: pointer;
     font-size: 15px;
-    background: #ca3c2a;
-    border: 1px solid #cf230c;
+    background: rgba(163, 200, 254, 0.65);
+    border: 1px solid rgba(163, 200, 254, 0.82);
     color: #fff;
     padding: 10px 20px;
   }
   
   input[type="submit"]:hover {
-    background: #c66a5e;
+    background: rgba(163, 200, 254, 0.65);
   }
   
   .button-container {
@@ -74,7 +75,7 @@
   }
   
   .error {
-    color: rgb(243, 85, 85);
+    color: rgba(163, 200, 254, 0.65);
     font-size: 12px;
   }
   
