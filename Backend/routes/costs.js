@@ -145,16 +145,27 @@ router.get("/reportByMonthAndYear", async function (req, res) {
   let emailAddress = req.query.email;
   const dbConnect = await dbo.connectToServer();
 
-  let myQuery = { $expr: { $and: [{ "$eq": [{ "$month": "$date" }, usersMonth] }, { "$eq": [{ "$year": "$date" }, usersYear] }] }, email_address: emailAddress };
+  let allCostsByMonthAndYear = { $expr: { $and: [{ "$eq": [{ "$month": "$date" }, usersMonth] }, { "$eq": [{ "$year": "$date" }, usersYear] }] }, email_address: emailAddress };
+  let sumOfCostsByMonthAndYear = { email_address: emailAddress, month: usersMonth, year: usersYear };
 
   dbConnect
     .db("async_course_db")
     .collection("costs")
-    .find(myQuery, { projection: { _id: 0 } })
+    .find(allCostsByMonthAndYear, { projection: { _id: 0 } })
     .toArray(function (err, result) {
       if (err) {
         res.status(500).send("Error to find all cost item!");
       } else {
+        dbConnect
+        .db("async_course_db")
+        .collection("costs_by_month")
+        .find(sumOfCostsByMonthAndYear, { projection: { _id: 0 } })
+        .toArray(function (err, result) {
+          if (err) {
+            res.status(500).send("Error to find all cost item!");
+          } else {
+            res.status(200).send(JSON.stringify({ data: result }));
+          }});
         res.status(200).send(JSON.stringify({ data: result }));
       }
     });
@@ -184,8 +195,6 @@ router.get("/allMyCosts", async function (req, res) {
 
   dbConnect.close();
 });
-
-
 
 
 
