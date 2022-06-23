@@ -3,7 +3,7 @@ import "./AddCost.css"
 
 async function addCostAPI(cost) {
     console.log("before api signip")
-    return fetch("http://localhost:8080/costs/addCostItem", {
+    return fetch("http://34.125.153.219:8080/costs/addCostItem", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",

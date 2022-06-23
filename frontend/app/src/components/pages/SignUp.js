@@ -9,7 +9,7 @@ const validEmailRegex = RegExp(
 
 async function createUserAPI(credentials) {
   console.log("before api signup")
-  return fetch("http://localhost:8080/users/signup", {
+  return fetch("http://34.125.153.219:8080/users/signup", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
