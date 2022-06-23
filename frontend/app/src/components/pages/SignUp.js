@@ -26,7 +26,7 @@ async function createUserAPI(credentials) {
         return "Error ocured in the server";
       }
       else if (res.status === 400) {
-        return "The username allready exist";
+        return "The username already exist";
       }
     }
   });
@@ -116,6 +116,7 @@ export default function SignUp() {
       setIsSubmitted(false);
     } else {
       const val = await createUserAPI(cred);
+      console.log('val', val)
       if (val === "success") {
         setText("User created successfully");
         setEmail("");
@@ -131,7 +132,7 @@ export default function SignUp() {
         setIsSubmitted(true);
       } else if (val==="Error ocured in the server"){
         setText("Error ocured in the server");
-      }else if (val==="user already exist"){
+      }else if (val==="The username already exist"){
         setText("The email " + JSON.stringify(userEmail) + " is already exists");
         setIsSubmitted(false);
       }
