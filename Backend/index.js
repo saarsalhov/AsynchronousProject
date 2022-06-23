@@ -4,7 +4,7 @@ const express = require('express'),
 require('dotenv').config();
 // make server object that contain port property and the value for our server.
 const server = {
-    port: 4040,
+    port: 8080,
 };
 
 // routers
