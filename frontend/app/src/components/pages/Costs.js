@@ -16,14 +16,14 @@ export default function Costs() {
     const [totalSum, setTotalSum] = useState(' ');
 
     const fetchData = useCallback(async () => {
-        const data = await fetch(`http://localhost:8080/costs/allMyCosts?email=${localStorage.getItem("email")}`);
+        const data = await fetch(`http://34.125.153.219:8080/costs/allMyCosts?email=${localStorage.getItem("email")}`);
         const json = await data.json();
 
         setData(json.data);
     }, [])
 
     const fetchDataFiltered = useCallback(async (filter) => {
-        const data = await fetch(`http://localhost:8080/costs/reportByMonthAndYear?month=${filter.month}&year=${filter.year}&email=${filter.email}`);
+        const data = await fetch(`http://34.125.153.219:8080/costs/reportByMonthAndYear?month=${filter.month}&year=${filter.year}&email=${filter.email}`);
         const json = await data.json();
 
         if (!json.message.data.length) {
